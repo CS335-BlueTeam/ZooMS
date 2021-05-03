@@ -22,3 +22,10 @@
 	height: 100vh;
 	flex-grow: 1;
 }
+
+#container #right-pane {
+	display: inherit;
+	margin: 50px 20%;
+
+}
+
