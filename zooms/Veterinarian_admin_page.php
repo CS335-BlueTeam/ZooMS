@@ -60,10 +60,44 @@
 				</div>
 
 				<div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-pill">
+					<button id="viewAllNutritionRecordButton">View All Nutrition Records </button>
+					<button id="viewAllMedicalRecordButton">View All Medical Records </button>
 					<button id="addNewAnimalRecordButton">Add Nutritional Record </button>
 					<button id="updateDietButton">Update Nutritional Record</button>
 					<button id="updateDietButton">Add Medical Record</button>
 					<button id="updateDietButton">Update Medical Record</button>
+					
+					<div id="allNutritionRecords">
+					<h3>Nutrition Records</h3>
+						<?php 
+								
+								$query = "SELECT nutrition.animal_ID, animals.species, animals.health, nutrition.diet FROM nutrition LEFT OUTER JOIN animals ON nutrition.animal_ID = animals.animal_ID";
+								$nutrition = sqlsrv_query( $conn, $query );
+								
+								echo "<table class='table table-dark table-striped table-hover'>
+										<tr>
+										<th>Animal ID</th>
+										<th>Species</th>
+										<th>Health</th>
+										<th>Diet</th>
+										</tr>";
+								
+								while ($row = sqlsrv_fetch_array($nutrition, SQLSRV_FETCH_ASSOC))
+								{
+									echo "<tr>";
+									echo "<td>" . $row['animal_ID'] . "</td>";
+									echo "<td>" . $row['species'] . "</td>";
+									echo "<td>" . $row['health'] . "</td>";
+									echo "<td>" . $row['diet'] . "</td>";
+									echo "</tr>";
+
+								}
+								echo "</table>";							
+						?>
+				
+					</div>
+					
+					
 				
 					<form id="newAnimalForm" class="row g-3" action="./addNewAnimalRecord.php" method="post">
 					<h3>Insert Diet for New Animal</h3>
