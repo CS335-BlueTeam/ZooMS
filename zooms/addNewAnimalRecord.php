@@ -15,14 +15,19 @@
     <center>
         
 		<?php
-   
-        // Taking all 5 values from the form data(input)
-        $animalID =  $_REQUEST['animalID'];
-        $animalDiet = $_REQUEST['animalDiet'];
-		
-		$query = "INSERT INTO nutrition VALUES('$animalID','$animalDiet')";
-		$result = sqlsrv_query( $conn, $query );
-		
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$animalID =  (int) $_REQUEST['animalID'];
+			$animalDiet = $_REQUEST['animalDiet'];
+
+			if (isset($_POST['submitNewRecord'])) {
+				$query = "INSERT INTO nutrition VALUES('$animalID','$animalDiet')";
+				sqlsrv_query( $conn, $query );
+			} else {
+				$query = "UPDATE nutrition SET diet = '$animalDiet' WHERE animal_ID = 1";
+				sqlsrv_query( $conn, $query );
+			}
+		}
+
 		header("Location: ./Veterinarian_admin_page.php");
         ?>
     </center>
