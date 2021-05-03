@@ -62,7 +62,7 @@
 				<button id="addNewEmployeeButton">Add New Employee</button>
 				<button id="updateEmployeeButton">Update Employee</button>
 				
-					<form id="form" class="row g-3" action="./addNewEmployee.php" target="_self" method="post">
+					<form id="form" class="row g-3" action="#" method="post">
 					<h3>Insert New Employee Data</h3>
 					  <div class="col-md-6">
 						<label for="inputfname" class="form-label">First Name</label>
@@ -71,29 +71,6 @@
 					  <div class="col-md-6">
 						<label for="inputlname" class="form-label">Last Name</label>
 						<input type="text" class="form-control" name="lname" id="inputlname">
-					  </div>
-					  <div class="col-12">
-						<label for="inputAddress" class="form-label">Address</label>
-						<input type="text" class="form-control" name="address1" id="inputAddress" placeholder="1234 Main St">
-					  </div>
-					  <div class="col-12">
-						<label for="inputAddress2" class="form-label">Address 2</label>
-						<input type="text" class="form-control" name="address2" id="inputAddress2" placeholder="Apartment, studio, or floor">
-					  </div>
-					  <div class="col-md-6">
-						<label for="inputCity" class="form-label">City</label>
-						<input type="text" class="form-control" name="city" id="inputCity">
-					  </div>
-					  <div class="col-md-4">
-						<label for="inputState" class="form-label">State</label>
-						<select id="inputState" name="state" class="form-select">
-						  <option selected>Choose...</option>
-						  <option>...</option>
-						</select>
-					  </div>
-					  <div class="col-md-2">
-						<label for="inputZip" class="form-label">Zip</label>
-						<input type="text" name="zipcode" class="form-control" id="inputZip">
 					  </div>
 					  <div class="col-md-6">
 						<label for="inputStartDate" class="form-label">Start Date</label>
@@ -124,22 +101,68 @@
 						<input type="text" name="position" class="form-control" id="inputPosition">
 					  </div>
 					  <div class="col-md-6">
-						<label for="inputDefaultPassword" class="form-label">Password</label>
+						<label for="inputDefaultPassword" class="form-label">Default Password</label>
 						<input type="password" step="0.01" name="password" class="form-control" id="inputDefaultPassword">
 					  </div>
 					  <div class="col-12">
-						<div class="form-check">
-						  <input class="form-check-input" type="checkbox" id="gridCheck">
-						  <label class="form-check-label" for="gridCheck">
-							Check me out
-						  </label>
-						</div>
-					  </div>
-					  <div class="col-12">
-						<button type="submit" class="btn btn-primary">Sign in</button>
+						<button type="submit" class="btn btn-primary">Submit</button>
 					  </div>
 				
 					</form>
+					
+					<form id="updateForm" class="row g-3" action="#" method="post">
+					<h3>Update Employee Data</h3>
+						<div class="input-group">
+						  <span class="input-group-text">Enter Employee's First and Last Name</span>
+						  <input type="text" aria-label="First name" id="firstName" class="form-control">
+						  <input type="text" aria-label="Last name" class="form-control">
+						</div>
+					  <div class="col-md-6">
+						<label for="inputfname" class="form-label">First Name</label>
+						<input type="text" class="form-control" name="fname" id="inputfname">
+					  </div>
+					  <div class="col-md-6">
+						<label for="inputlname" class="form-label">Last Name</label>
+						<input type="text" class="form-control" name="lname" id="inputlname">
+					  </div>
+					  <div class="col-md-6">
+						<label for="inputStartDate" class="form-label">Start Date</label>
+						<input type="date" name="startDate" class="form-control" id="inputStartDate">
+					  </div>
+					  <div class="col-md-6">
+						<label for="inputEndDate" class="form-label">End Date</label>
+						<input type="date" name="endDate" class="form-control" id="inputEndDate">
+					  </div>
+					  <div class="col-md-6">
+						<label for="inputBankInfo" class="form-label">Bank Account Number</label>
+						<input type="text" name="bankAccountNumber" class="form-control" id="inputBankInfo">
+					  </div>
+					  <div class="col-md-6">
+						<label for="inputDepartment" class="form-label">Department</label>
+						<input type="text" name="department" class="form-control" id="inputDepartment">
+					  </div>
+					  <div class="col-md-6">
+						<label for="inputSalary" class="form-label">Salary</label>
+						<input type="number" step="0.01" name="salary" class="form-control" id="inputSalary">
+					  </div>
+					  <div class="col-md-6">
+						<label for="inputHourlyPay" class="form-label">Hourly Pay</label>
+						<input type="number" step="0.01" name="hourlyPay" class="form-control" id="inputHourlyPay">
+					  </div>
+					  <div class="col-md-6">
+						<label for="inputPosition" class="form-label">Position</label>
+						<input type="text" name="position" class="form-control" id="inputPosition">
+					  </div>
+					  <div class="col-md-6">
+						<label for="inputDefaultPassword" class="form-label">Default Password</label>
+						<input type="password" step="0.01" name="password" class="form-control" id="inputDefaultPassword">
+					  </div>
+					  <div class="col-12">
+						<button type="submit" class="btn btn-primary">Update</button>
+					  </div>
+				
+					</form>
+
 				</div>
 			</div>
 			
