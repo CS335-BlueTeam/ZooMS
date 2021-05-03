@@ -60,10 +60,10 @@
 				</div>
 
 				<div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-pill">
-				<button id="addNewEmployeeButton">Create a new record </button>
-				<button id="updateEmployeeButton">Update Nutritional Information</button>
+				<button id="addNewAnimalRecordButton">Create a new record </button>
+				<button id="updateDietButton">Update Nutritional Information</button>
 				
-					<form id="form" class="row g-3" action="./addNewAnimalRecord.php" method="post">
+					<form id="newAnimalForm" class="row g-3" action="./addNewAnimalRecord.php" method="post">
 					<h3>Insert Diet for New Animal</h3>
 				
 					  <div class="col-md-6">
@@ -85,7 +85,35 @@
 						<input type="text" class="form-control" name="animalDiet" id="animalDiet">
 					  </div>
 					  <div class="col-12">
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="submit" class="btn btn-primary" id="submitNewAnimalRecord" name="">Submit</button>
+					  </div>
+				
+					</form>
+					<form id="updateAnimalForm" class="row g-3" action="./addNewAnimalRecord.php" method="post">
+					<h3>Update Diet for New Animal</h3>
+				
+					  <div class="col-md-6">
+						<label for="taskOption">Choose the animal ID: </label>
+						<select name="animalID">
+						
+							
+							<?php 
+								$query = "SELECT animal_ID FROM animals";
+								$animalIDs = sqlsrv_query( $conn, $query );
+								
+								while ($row = sqlsrv_fetch_array($animalIDs, SQLSRV_FETCH_ASSOC))
+								{
+									echo '<option value="'.$row['animal_ID'].'">'.$row['animal_ID'].'</option>';
+								}							
+							?>
+						</select><br>
+		
+						<label for="animalDiet" class="form-label">Insert New Diet</label>
+						<input type="text" class="form-control" name="animalDiet" id="animalDiet">
+							
+					  </div>
+					  <div class="col-12">
+						<button type="submit" class="btn btn-primary" id="submitUpdateAnimalRecord" name="">Submit</button>
 					  </div>
 				
 					</form>
@@ -96,6 +124,6 @@
 	</div>
 	
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-	<script src="./js/javascript.js"></script>
+	<script src="./js/Vet.js"></script>
 </body>
 </html>
