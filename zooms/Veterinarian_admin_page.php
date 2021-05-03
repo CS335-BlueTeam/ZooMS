@@ -60,8 +60,10 @@
 				</div>
 
 				<div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-pill">
-				<button id="addNewAnimalRecordButton">Create a new record </button>
-				<button id="updateDietButton">Update Nutritional Information</button>
+					<button id="addNewAnimalRecordButton">Add Nutritional Record </button>
+					<button id="updateDietButton">Update Nutritional Record</button>
+					<button id="updateDietButton">Add Medical Record</button>
+					<button id="updateDietButton">Update Medical Record</button>
 				
 					<form id="newAnimalForm" class="row g-3" action="./addNewAnimalRecord.php" method="post">
 					<h3>Insert Diet for New Animal</h3>
