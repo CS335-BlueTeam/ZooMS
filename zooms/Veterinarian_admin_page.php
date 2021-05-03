@@ -90,7 +90,7 @@
 				
 					</form>
 					<form id="updateAnimalForm" class="row g-3" action="./addNewAnimalRecord.php" method="post">
-					<h3>Update Diet for New Animal</h3>
+					<h3>Update Diet for Animal</h3>
 				
 					  <div class="col-md-6">
 						<label for="taskOption">Choose the animal ID: </label>
