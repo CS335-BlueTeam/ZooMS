@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($employee_err) && empty($password_err)){
 
         // Prepare a select statement
-        $sql = "SELECT ID, password, fname FROM employees WHERE ID = ?";
+        $sql = "SELECT ID, password, fname, dept_name FROM employees WHERE ID = ?";
 
         if($result = sqlsrv_query($conn, $sql, array($employee_id))){
             if(sqlsrv_has_rows($result)){ 
@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if($password == $row['password']){
                         // Password is correct, so start a new session
                         session_start();
-                        
+
                         // Store data in session variables
                         $_SESSION["loggedin"] = true;
                         $_SESSION["employee_id"] = $employee_id;
