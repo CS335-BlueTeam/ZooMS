@@ -24,6 +24,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		echo file_get_contents("../html/header.html");
 	?>
     <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["employee_name"]); ?></b>. Welcome to ZooMS.</h1>
+    <p><?php var_dump($_SESSION['department']); ?> </p>
     <p>
         <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
         <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>

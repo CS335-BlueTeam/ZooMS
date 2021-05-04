@@ -1,4 +1,5 @@
 <?php
+echo file_get_contents("../html/header.html");
 // Initialize the session
 session_start();
  
@@ -67,6 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $_SESSION["loggedin"] = true;
                         $_SESSION["employee_id"] = $employee_id;
                         $_SESSION["employee_name"] = $row['fname'];
+                        $_SESSION["department"] = $row['dept_name'];
 
                         // Redirect user to welcome page
                         header("location: welcome.php");
