@@ -11,7 +11,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 $myRoot = $_SERVER["DOCUMENT_ROOT"];
 
 // Include connection file
-require_once ($myRoot . '/myproject/db/connect_to_db.php');
+require_once ($myRoot . '/zooms/zooms/db/connect_to_db.php');
 $conn = get_db_connection();
 
 // Define variables and initialize with empty values

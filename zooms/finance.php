@@ -19,7 +19,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 $myRoot = $_SERVER["DOCUMENT_ROOT"];
 
 // Include connection file
-require_once ($myRoot . '/myproject/db/connect_to_db.php');
+require_once ($myRoot . '/zooms/zooms/db/connect_to_db.php');
 $conn = get_db_connection();
 $sql = "SELECT item_name, quantity, cost from items";
 $items = sqlsrv_query($conn, $sql);
@@ -44,7 +44,7 @@ $tix_s = 0.0;
         display: flex;
         justify-content: center;
     }
-table {text-align: center;}
+th, td {padding: 10px;}
 table tr:nth-child(even){background-color: #f2f2f2;}
 .btn-group .button {
   background: royalblue; /* Green */
