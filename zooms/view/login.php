@@ -1,5 +1,5 @@
 <?php
-echo file_get_contents("../html/header.html");
+echo file_get_contents("../html/header.php");
 // Initialize the session
 session_start();
  
@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     
                     // can change to password_verify($password, $row['password'])
                     // to verify hashed passwords
-                    if($password == $row['password']){
+                    if(password_verify($password, $row['password'])){
                         // Password is correct, so start a new session
                         session_start();
 
