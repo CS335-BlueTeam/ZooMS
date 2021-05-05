@@ -1,16 +1,16 @@
 <?php
-//// Initialize the session
-//session_start();
-//
-//// Check if the user is logged in, if not then redirect to login page
-//if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-//    header("location: login.php");
-//    exit;
-//}elseif($_SESSION["department"]!=='Veterinarian Medicine'){
-//    header("location: ./view/login.php");
-//    echo "You are not in Accounting.";
-//    exit;
-//}
+// Initialize the session
+session_start();
+
+// Check if the user is logged in, if not then redirect to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}elseif($_SESSION["department"]!=='Veterinarian Medicine'){
+    header("location: ./view/login.php");
+    echo "You are not in Accounting.";
+    exit;
+}
 //?>
 
 <!DOCTYPE html>
@@ -33,6 +33,16 @@
     <?php
     echo file_get_contents("./html/header.php");
     ?>
+    <?php
+
+    if (isset($_SESSION['message'])): ?>
+        <div class="alert alert-<?=$_SESSION['msg_type']?>">
+            <?php
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+            ?>
+        </div>
+    <?php endif ?>
 	<div id="container">
 		<div id="left-pane">
 			<div class="nav nav-pills d-flex flex-column p-3 text-white bg-dark sidebar" role="tablist" style="width: 280px;">
@@ -42,12 +52,6 @@
 			  </a>
 			  <hr>
 			  <ul class="nav nav-pills flex-column mb-auto">
-				<li class="nav-item">
-				  <a href="#" class="nav-link active" id="home-pill" data-bs-toggle="pill" data-bs-target="#home" type="button" role="tablist" aria-orientation="vertical">
-					
-					Home
-				  </a>
-				</li>
 				<li>
 				  <a href="#" class="nav-link text-white" id="dashboard-pill" data-bs-toggle="pill" data-bs-target="#dashboard" type="button" role="tablist" aria-orientation="vertical">
 					
@@ -57,26 +61,13 @@
 				
 			  </ul>
 			  <hr>
-			  <div class="dropdown">
-				<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-				  <!-- <img src="" alt="mdo" width="32" height="32" class="rounded-circle me-2"> -->
+			  <div>
 				  <strong>TaNasha Hilton</strong>
-				</a>
-				<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-				  <li><a class="dropdown-item" href="#">Settings</a></li>
-				  <li><a class="dropdown-item" href="#">Profile</a></li>
-				  <li><hr class="dropdown-divider"></li>
-				  <li><a class="dropdown-item" href="#">Sign out</a></li>
-				</ul>
 			  </div>
 			</div>
 		</div>
 		<div id="right-pane">
 			<div class="tab-content" id="v-pills-tabContent">
-			
-				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-pill">
-				Hello
-				</div>
 
 				<div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-pill">
 				
@@ -90,13 +81,15 @@
 						<?php 
 								
 
-								$query = "SELECT animals.animal_ID, animals.species, animals.health, nutrition.diet FROM animals LEFT OUTER JOIN nutrition ON nutrition.animal_ID = animals.animal_ID";
+								$query = "SELECT animals.animal_ID, animals.species, animals.health, animals.name, animals.sex, nutrition.diet FROM animals LEFT OUTER JOIN nutrition ON nutrition.animal_ID = animals.animal_ID";
 
 								$nutrition = sqlsrv_query( $conn, $query ); ?>
 								
 								<table class='table table-dark table-striped table-hover'>
 										<tr>
 										<th>Animal ID</th>
+										<th>Name</th>
+										<th>Sex</th>
 										<th>Species</th>
 										<th>Health</th>
 										<th>Diet</th>
@@ -108,6 +101,8 @@
 
 									<tr>
 									<td> <?php echo $row['animal_ID']; ?></td>
+									<td> <?php echo $row['name']; ?></td>
+									<td> <?php echo $row['sex']; ?></td>
 									<td> <?php echo $row['species']; ?></td>
 									<td> <?php echo $row['health']; ?></td>
 									<td> <?php echo $row['diet']; ?></td>

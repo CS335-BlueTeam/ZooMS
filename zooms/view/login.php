@@ -5,13 +5,15 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    $_SESSION['message'] = "Access Denied.";
+    $_SESSION['msg_type'] = "danger";
     header("location: welcome.php");
     exit;
 }
 $myRoot = $_SERVER["DOCUMENT_ROOT"];
 
 // Include connection file
-require_once ($myRoot . '/myproject/db/connect_to_db.php');
+require_once ($myRoot . '/ZooMS/zooms/db/connect_to_db.php');
 $conn = get_db_connection();
 
 // Define variables and initialize with empty values

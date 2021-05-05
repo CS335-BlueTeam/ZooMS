@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 
-#form, #updateForm, #allNutritionRecords {
+#form, #updateForm, #allNutritionRecords, #allEmployeeRecords {
 	margin: 50px 50px;
 }
 
@@ -48,6 +48,7 @@
 	width: 100%;
 	margin: 0 10%;
 }
+
 
 
 #navbarText:last-of-type {
