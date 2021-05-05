@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 
-#form, #updateForm, #allNutritionRecords, #newAnimalForm, #updateAnimalForm {
+#form, #updateForm, #allNutritionRecords {
 	margin: 50px 50px;
 }
 
@@ -25,17 +25,26 @@
 
 #container #right-pane {
 	display: inherit;
-	margin: 50px 2%;
+	margin: 10px 2%;
 	width: 100%;
-
 }
 
-#update {
 
-
-}
-#updateFields {
+#updateFields, #AddFields {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+}
+
+#allNutritionRecords {
+	margin-bottom: 0;
+}
+
+#updateFields.col-md-8, #AddFields.col-md-8 {
+	margin: 16px auto;
+}
+
+#dashboard {
+	width: 100%;
+	margin: 0 10%;
 }
