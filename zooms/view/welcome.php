@@ -21,7 +21,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 <body>
     <?php
-		echo file_get_contents("../html/header.html");
+		echo file_get_contents("../html/header.php");
 	?>
     <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["employee_name"]); ?></b>. Welcome to ZooMS.</h1>
     <p>

@@ -1,3 +1,18 @@
+<?php
+//// Initialize the session
+//session_start();
+//
+//// Check if the user is logged in, if not then redirect to login page
+//if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+//    header("location: login.php");
+//    exit;
+////}elseif($_SESSION["department"]!=='Human Resources'){
+////    header("location: ./view/login.php");
+////    echo "You are not in Accounting.";
+////    exit;
+//}
+//?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +20,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/styles.css" type="text/css">
-	<?php
-    $myRoot = $_SERVER["DOCUMENT_ROOT"];
-    
-   
-    ?>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
     <title>ZooMS</title>
 </head>
 <body>
+    <?php
+    echo file_get_contents("./html/header.php");
+
+    include ('C:/xampp/htdocs/ZooMS/zooms/db/connect_to_db.php');
+    $conn = get_db_connection();
+    ?>
 	<div id="container">
 		<div id="left-pane">
 			<div class="nav nav-pills d-flex flex-column p-3 text-white bg-dark sidebar" role="tablist" style="width: 280px;">
@@ -35,8 +51,9 @@
 					Dashboard
 				  </a>
 				</li>
+              </ul>
 				
-			  <hr>
+
 			  <div class="dropdown">
 				<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 				  <!-- <img src="" alt="mdo" width="32" height="32" class="rounded-circle me-2"> -->
@@ -62,7 +79,7 @@
 				<button id="addNewEmployeeButton">Add New Employee</button>
 				<button id="updateEmployeeButton">Update Employee</button>
 				
-					<form id="form" class="row g-3" action="#" method="post">
+					<form id="form" class="row g-3" action="processHRData.php" method="post">
 					<h3>Insert New Employee Data</h3>
 					  <div class="col-md-6">
 						<label for="inputfname" class="form-label">First Name</label>
@@ -105,12 +122,12 @@
 						<input type="password" step="0.01" name="password" class="form-control" id="inputDefaultPassword">
 					  </div>
 					  <div class="col-12">
-						<button type="submit" class="btn btn-primary">Submit</button>
+						<button type="submit" class="btn btn-primary" id='submitNewEmployeeRecord' name="submitNewEmployeeRecord">Submit</button>
 					  </div>
 				
 					</form>
 					
-					<form id="updateForm" class="row g-3" action="#" method="post">
+					<form id="updateForm" class="row g-3" action="processHRData.php" method="post">
 					<h3>Update Employee Data</h3>
 						<div class="input-group">
 						  <span class="input-group-text">Enter Employee's First and Last Name</span>
@@ -158,7 +175,7 @@
 						<input type="password" step="0.01" name="password" class="form-control" id="inputDefaultPassword">
 					  </div>
 					  <div class="col-12">
-						<button type="submit" class="btn btn-primary">Update</button>
+						<button type="submit" id="submitUpdateEmployeeRecord" class="btn btn-primary" name="submitUpdateEmployeeRecord">Update</button>
 					  </div>
 				
 					</form>

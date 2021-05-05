@@ -1,3 +1,18 @@
+<?php
+//// Initialize the session
+//session_start();
+//
+//// Check if the user is logged in, if not then redirect to login page
+//if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+//    header("location: login.php");
+//    exit;
+//}elseif($_SESSION["department"]!=='Veterinarian Medicine'){
+//    header("location: ./view/login.php");
+//    echo "You are not in Accounting.";
+//    exit;
+//}
+//?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +23,16 @@
     <link rel="stylesheet" href="CSS/styles.css" type="text/css">
 	<?php
     $myRoot = $_SERVER["DOCUMENT_ROOT"];
-    include ($myRoot . '\myproject\db\connect_to_db.php');
+    include ('C:/xampp/htdocs/ZooMS/zooms/db/connect_to_db.php');
     $conn = get_db_connection();
    
     ?>
     <title>ZooMS</title>
 </head>
 <body>
+    <?php
+    echo file_get_contents("./html/header.php");
+    ?>
 	<div id="container">
 		<div id="left-pane">
 			<div class="nav nav-pills d-flex flex-column p-3 text-white bg-dark sidebar" role="tablist" style="width: 280px;">
@@ -64,15 +82,16 @@
 				
 					<button id="viewAllNutritionRecordButton">View All Nutrition Records </button>
 					<button id="viewAllMedicalRecordButton">View All Medical Records </button>
-					<button id="addNewAnimalRecordButton">Add Nutritional Record </button>
 					<button id="updateDietButton">Add Medical Record</button>
 					<button id="updateDietButton">Update Medical Record</button>
 					
 					<div id="allNutritionRecords">
-					<h3>Nutrition Records</h3>
+
 						<?php 
 								
-								$query = "SELECT nutrition.animal_ID, animals.species, animals.health, nutrition.diet FROM nutrition LEFT OUTER JOIN animals ON nutrition.animal_ID = animals.animal_ID";
+
+								$query = "SELECT animals.animal_ID, animals.species, animals.health, nutrition.diet FROM animals LEFT OUTER JOIN nutrition ON nutrition.animal_ID = animals.animal_ID";
+
 								$nutrition = sqlsrv_query( $conn, $query ); ?>
 								
 								<table class='table table-dark table-striped table-hover'>
@@ -92,20 +111,26 @@
 									<td> <?php echo $row['species']; ?></td>
 									<td> <?php echo $row['health']; ?></td>
 									<td> <?php echo $row['diet']; ?></td>
-									<td>
-                                        <a href="#" class='btn btn-primary editButtons' >Edit</a></td>
+
+
+                                    <?php if(is_null($row['diet']))
+                                    { echo '<td>
+                                        <a href="#" class="btn btn-primary addButtons" >Add</a></td>';
+                                    } else {
+                                        echo '<td>
+                                        <a href="#" class="btn btn-primary editButtons" >Edit</a></td>';
+                                    }
+                                    ?>
 
 									</tr>
                                 <?php endwhile ?>
 
                                 </table>
-
-				
+            
 					</div>
 
-                    <form id="update" class="row g-3" action="./addNewAnimalRecord.php" method="post">
-                        <br><br>
-                        <h3>Update Diet for Animal</h3>
+                    <form id="update" class="row g-3" action="processData.php" method="post">
+
 
                         <div class="col-md-8" id="updateFields">
                             <div><label for="taskOption">Choose the animal ID: </label>
@@ -122,22 +147,17 @@
                                 ?>
                                 </select></div>
 
-                            <div><input type="text" class="form-control-sm" style="width: 100%"name="animalDiet" id="animalDiet" placeholder="Insert New Diet..."></div>
-
+                            <div><input type="text" class="form-control-sm" style="width: 100%"name="animalDiet" id="animalDiet" placeholder="Insert Updated Diet..."></div>
+                            <div>
+                                <button type="submit" class="btn btn-primary" id="submitUpdateAnimalRecord" name="submitUpdatedAnimalDiet">Submit</button>
+                            </div>
                         </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary" id="submitUpdateAnimalRecord" name="">Submit</button>
-                        </div>
-
                     </form>
-					
-					
 				
-					<form id="newAnimalForm" class="row g-3" action="./addNewAnimalRecord.php" method="post">
-					<h3>Insert Diet for New Animal</h3>
+					<form id="dietForNewAnimalForm" class="row g-3" action="processData.php" method="post">
 				
-					  <div class="col-md-6">
-						<label for="taskOption">Choose the animal ID: </label>
+					  <div class="col-md-8" id="AddFields">
+						<div><label for="taskOption">Choose the animal ID: </label>
 						<select name="animalID">
 							
 							<?php 
@@ -149,16 +169,14 @@
 									echo '<option value="'.$row['animal_ID'].'">'.$row['animal_ID'].'</option>';
 								}							
 							?>
-						</select><br>
+                        </select><br></div>
 
-						<label for="animalDiet" class="form-label">Insert Diet</label>
-						<input type="text" class="form-control" name="animalDiet" id="animalDiet">
-					  </div>
-					  <div class="col-12">
-						<button type="submit" class="btn btn-primary" id="submitNewAnimalRecord" name="">Submit</button>
-					  </div>
-				
-					</form>
+                          <div><input type="text" class="form-control-sm" style="width: 100%" name="animalDiet" id="animalDiet" placeholder="Insert New Diet..."></div>
+                          <div>
+                            <button type="submit" class="btn btn-primary" id="submitNewAnimalRecord" name="submitNewAnimalDiet">Submit</button>
+                          </div>
+                      </div>
+                    </form>
 
 				</div>
 			</div>
@@ -170,3 +188,4 @@
 	<script src="./js/Vet.js"></script>
 </body>
 </html>
+

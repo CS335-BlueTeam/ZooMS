@@ -12,12 +12,12 @@ let addNewEmployeeButton = document.getElementById('addNewEmployeeButton');
 addNewEmployeeButton.addEventListener("click", function() {
 	showNewForm.style.display = 'flex';
 	showUpdateForm.style.display = 'none';
-	document.getElementById('submitNewEmployeeRecord').name = "submitNewEmployeeRecord";
+	// document.getElementById('submitNewEmployeeRecord').name = "submitNewEmployeeRecord";
 });
 
 let updateEmployeeButton = document.getElementById('updateEmployeeButton');
 updateEmployeeButton.addEventListener("click", function() {
 	showUpdateForm.style.display = 'flex';
 	showNewForm.style.display = 'none';
-	document.getElementById('submitUpdateEmployeeRecord').name = "submitUpdateEmployeeRecord";
+	// document.getElementById('submitUpdateEmployeeRecord').name = "submitUpdateEmployeeRecord";
 });
