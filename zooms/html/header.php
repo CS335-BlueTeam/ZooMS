@@ -23,6 +23,7 @@
                                 <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#">Logs</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/weather.php">Weather</a></li>
+								<li class="nav-item"><a class="nav-link" href="/zooms/zooms/finance.php">Finance</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/zooms/zooms/HR_admin_page.php">Human Resources</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/zooms/zooms/Veterinarian_admin_page.php">Veterinarian Services</a></li>
 
