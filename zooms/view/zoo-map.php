@@ -29,6 +29,7 @@
     <h1>Map of Zoo</h1>
     <div id="map"></div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXpZEki0U_vGZB2HSR3JRKxDdp9ditQ1M&callback=initMap&libraries=&v=weekly"></script>
+    <a href="https://www.pictramap.com/app/view?p=4a6466" target="_blank">Click here to take an animated virtual tour of our zoo</a>
     <script>
     function initMap() {
       var map;
@@ -47,6 +48,7 @@
     }
     
     </script>
+
     <div id="allNutritionRecords">
 
         <?php
