@@ -26,11 +26,12 @@
 							</li>
 							<div class="dropdown-content">
 								<li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/add-animals2.php">Add Animal</a><li>
-								<li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/logs2.php">Logs</a></li>
+								<li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/logs2.php">Logs</a></li>						
 							</div>
 						</div>
 						<li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/weather.php">Weather</a></li>
-								<li class="nav-item"><a class="nav-link" href="/zooms/zooms/finance.php">Finance</a></li>
+						<li class="nav-item"><a class="nav-link" href="/zooms/zooms/finance.php">Finance</a></li>
+						<li class="nav-item"><a class="nav-link" href="/zooms/zooms/suppliers2.php">Suppliers</a></li>
 						<li class="nav-item"><a class="nav-link" href="/zooms/zooms/HR_admin_page.php">Human Resources</a></li>
 						<li class="nav-item"><a class="nav-link" href="/zooms/zooms/Veterinarian_admin_page.php">Veterinarian Services</a></li>
 
