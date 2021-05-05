@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="CSS/styles.css" type="text/css">
 	<?php
     $myRoot = $_SERVER["DOCUMENT_ROOT"];
-	include($myRoot . '/myproject/index.php');
+    include ($myRoot . '\myproject\db\connect_to_db.php');
+    $conn = get_db_connection();
    
     ?>
     <title>ZooMS</title>
@@ -60,10 +61,10 @@
 				</div>
 
 				<div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-pill">
+				
 					<button id="viewAllNutritionRecordButton">View All Nutrition Records </button>
 					<button id="viewAllMedicalRecordButton">View All Medical Records </button>
 					<button id="addNewAnimalRecordButton">Add Nutritional Record </button>
-					<button id="updateDietButton">Update Nutritional Record</button>
 					<button id="updateDietButton">Add Medical Record</button>
 					<button id="updateDietButton">Update Medical Record</button>
 					
@@ -72,30 +73,63 @@
 						<?php 
 								
 								$query = "SELECT nutrition.animal_ID, animals.species, animals.health, nutrition.diet FROM nutrition LEFT OUTER JOIN animals ON nutrition.animal_ID = animals.animal_ID";
-								$nutrition = sqlsrv_query( $conn, $query );
+								$nutrition = sqlsrv_query( $conn, $query ); ?>
 								
-								echo "<table class='table table-dark table-striped table-hover'>
+								<table class='table table-dark table-striped table-hover'>
 										<tr>
 										<th>Animal ID</th>
 										<th>Species</th>
 										<th>Health</th>
 										<th>Diet</th>
-										</tr>";
+										<th colspan="2">Actions</th>
+										</tr>
 								
-								while ($row = sqlsrv_fetch_array($nutrition, SQLSRV_FETCH_ASSOC))
-								{
-									echo "<tr>";
-									echo "<td>" . $row['animal_ID'] . "</td>";
-									echo "<td>" . $row['species'] . "</td>";
-									echo "<td>" . $row['health'] . "</td>";
-									echo "<td>" . $row['diet'] . "</td>";
-									echo "</tr>";
+								<?php
+                                    while ($row = sqlsrv_fetch_array($nutrition, SQLSRV_FETCH_ASSOC)): ?>
 
-								}
-								echo "</table>";							
-						?>
+									<tr>
+									<td> <?php echo $row['animal_ID']; ?></td>
+									<td> <?php echo $row['species']; ?></td>
+									<td> <?php echo $row['health']; ?></td>
+									<td> <?php echo $row['diet']; ?></td>
+									<td>
+                                        <a href="#" class='btn btn-primary editButtons' >Edit</a></td>
+
+									</tr>
+                                <?php endwhile ?>
+
+                                </table>
+
 				
 					</div>
+
+                    <form id="update" class="row g-3" action="./addNewAnimalRecord.php" method="post">
+                        <br><br>
+                        <h3>Update Diet for Animal</h3>
+
+                        <div class="col-md-8" id="updateFields">
+                            <div><label for="taskOption">Choose the animal ID: </label>
+                            <select name="animalID">
+
+                                <?php
+                                $query = "SELECT animal_ID FROM animals";
+                                $animalIDs = sqlsrv_query( $conn, $query );
+
+                                while ($row = sqlsrv_fetch_array($animalIDs, SQLSRV_FETCH_ASSOC))
+                                {
+                                    echo '<option value="'.$row['animal_ID'].'">'.$row['animal_ID'].'</option>';
+                                }
+                                ?>
+                                </select></div>
+
+                            <div><input type="text" class="form-control-sm" style="width: 100%"name="animalDiet" id="animalDiet" placeholder="Insert New Diet..."></div>
+
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary" id="submitUpdateAnimalRecord" name="">Submit</button>
+                        </div>
+
+                    </form>
 					
 					
 				
@@ -116,7 +150,7 @@
 								}							
 							?>
 						</select><br>
-		
+
 						<label for="animalDiet" class="form-label">Insert Diet</label>
 						<input type="text" class="form-control" name="animalDiet" id="animalDiet">
 					  </div>
@@ -125,34 +159,7 @@
 					  </div>
 				
 					</form>
-					<form id="updateAnimalForm" class="row g-3" action="./addNewAnimalRecord.php" method="post">
-					<h3>Update Diet for Animal</h3>
-				
-					  <div class="col-md-6">
-						<label for="taskOption">Choose the animal ID: </label>
-						<select name="animalID">
-						
-							
-							<?php 
-								$query = "SELECT animal_ID FROM animals";
-								$animalIDs = sqlsrv_query( $conn, $query );
-								
-								while ($row = sqlsrv_fetch_array($animalIDs, SQLSRV_FETCH_ASSOC))
-								{
-									echo '<option value="'.$row['animal_ID'].'">'.$row['animal_ID'].'</option>';
-								}							
-							?>
-						</select><br>
-		
-						<label for="animalDiet" class="form-label">Insert New Diet</label>
-						<input type="text" class="form-control" name="animalDiet" id="animalDiet">
-							
-					  </div>
-					  <div class="col-12">
-						<button type="submit" class="btn btn-primary" id="submitUpdateAnimalRecord" name="">Submit</button>
-					  </div>
-				
-					</form>
+
 				</div>
 			</div>
 			
