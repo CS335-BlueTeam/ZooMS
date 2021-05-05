@@ -72,7 +72,9 @@
 
 						<?php 
 								
+
 								$query = "SELECT animals.animal_ID, animals.species, animals.health, nutrition.diet FROM animals LEFT OUTER JOIN nutrition ON nutrition.animal_ID = animals.animal_ID";
+
 								$nutrition = sqlsrv_query( $conn, $query ); ?>
 								
 								<table class='table table-dark table-striped table-hover'>
@@ -93,6 +95,7 @@
 									<td> <?php echo $row['health']; ?></td>
 									<td> <?php echo $row['diet']; ?></td>
 
+
                                     <?php if(is_null($row['diet']))
                                     { echo '<td>
                                         <a href="#" class="btn btn-primary addButtons" >Add</a></td>';
@@ -106,10 +109,11 @@
                                 <?php endwhile ?>
 
                                 </table>
-
+            
 					</div>
 
                     <form id="update" class="row g-3" action="processData.php" method="post">
+
 
                         <div class="col-md-8" id="updateFields">
                             <div><label for="taskOption">Choose the animal ID: </label>
@@ -156,8 +160,6 @@
                           </div>
                       </div>
                     </form>
-				
-					</form>
 
 				</div>
 			</div>
