@@ -48,3 +48,8 @@
 	width: 100%;
 	margin: 0 10%;
 }
+
+
+#navbarText:last-of-type {
+	margin-left: auto;
+}

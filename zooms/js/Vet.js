@@ -10,15 +10,6 @@ window.onload = function() {
 
 }
 
-let addNewAnimalButton = document.getElementById('addNewAnimalRecordButton');
-addNewAnimalButton.addEventListener("click", function() {
-
-	showAllNutritionRecords.style.display = 'none';
-
-	document.getElementById('submitNewAnimalRecord').name = "submitNewRecord";
-});
-
-
 let showAllNutritionButton = document.getElementById('viewAllNutritionRecordButton');
 showAllNutritionButton.addEventListener("click", function() {
 	if (showAllNutritionRecords.style.display === "none"){

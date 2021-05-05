@@ -44,7 +44,7 @@
         date_default_timezone_set('America/New_York');
         $currentTime = time();
 
-		echo file_get_contents("../html/header.html");
+		echo file_get_contents("../html/header.php");
         ?>
         <div id="w-banner">
         </div>

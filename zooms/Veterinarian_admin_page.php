@@ -1,3 +1,18 @@
+<?php
+//// Initialize the session
+//session_start();
+//
+//// Check if the user is logged in, if not then redirect to login page
+//if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+//    header("location: login.php");
+//    exit;
+//}elseif($_SESSION["department"]!=='Veterinarian Medicine'){
+//    header("location: ./view/login.php");
+//    echo "You are not in Accounting.";
+//    exit;
+//}
+//?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +23,16 @@
     <link rel="stylesheet" href="CSS/styles.css" type="text/css">
 	<?php
     $myRoot = $_SERVER["DOCUMENT_ROOT"];
-    include ($myRoot . '\myproject\db\connect_to_db.php');
+    include ('C:/xampp/htdocs/ZooMS/zooms/db/connect_to_db.php');
     $conn = get_db_connection();
    
     ?>
     <title>ZooMS</title>
 </head>
 <body>
+    <?php
+    echo file_get_contents("./html/header.php");
+    ?>
 	<div id="container">
 		<div id="left-pane">
 			<div class="nav nav-pills d-flex flex-column p-3 text-white bg-dark sidebar" role="tablist" style="width: 280px;">
@@ -64,7 +82,6 @@
 				
 					<button id="viewAllNutritionRecordButton">View All Nutrition Records </button>
 					<button id="viewAllMedicalRecordButton">View All Medical Records </button>
-					<button id="addNewAnimalRecordButton">Add Nutritional Record </button>
 					<button id="updateDietButton">Add Medical Record</button>
 					<button id="updateDietButton">Update Medical Record</button>
 					

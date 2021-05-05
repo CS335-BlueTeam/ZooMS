@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <?php
+      $myRoot = $_SERVER["DOCUMENT_ROOT"];
+      include ($myRoot . '\ZooMS\zooms\db\connect_to_db.php');
+      $conn = get_db_connection();
+
+      ?>
     <title>Zoo Map</title>
     <style>
       html, body {
@@ -14,10 +20,11 @@
         height: 400px;
       }
     </style>
+      <link rel="stylesheet" href="../css/styles.css" type="text/css">
   </head>
   <body>
 	<?php
-		echo file_get_contents("../html/header.html");
+		echo file_get_contents("../html/header.php");
 	?>
     <h1>Map of Zoo</h1>
     <div id="map"></div>
@@ -39,5 +46,33 @@
  }
     }
     </script>
+    <div id="allNutritionRecords">
+
+        <?php
+
+
+        $query = "SELECT department.dept_name, enclosures.place FROM enclosures left outer join department on department.enclosure_ID = enclosures.enclosure_ID";
+
+        $department = sqlsrv_query( $conn, $query ); ?>
+
+        <table class='table table-dark table-striped table-hover'>
+            <tr>
+                <th>Department Name</th>
+                <th>Buildings/Enclosures</th>
+            </tr>
+
+            <?php
+            while ($row = sqlsrv_fetch_array($department, SQLSRV_FETCH_ASSOC)): ?>
+
+                <tr>
+                    <td> <?php echo $row['dept_name']; ?></td>
+                    <td> <?php echo $row['place']; ?></td>
+
+                </tr>
+            <?php endwhile ?>
+
+        </table>
+
+    </div>
   </body>
 </html>
