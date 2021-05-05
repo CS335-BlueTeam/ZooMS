@@ -13,7 +13,9 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 $myRoot = $_SERVER["DOCUMENT_ROOT"];
 
 // Include connection file
+
 require_once ($myRoot . '/ZooMS/zooms/db/connect_to_db.php');
+
 $conn = get_db_connection();
 
 // Define variables and initialize with empty values
