@@ -23,10 +23,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <?php
 		echo file_get_contents("../html/header.php");
 	?>
+    <?php
+    if (isset($_SESSION['message'])): ?>
+        <div class="alert alert-<?=$_SESSION['msg_type']?>">
+            <?php
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+            ?>
+        </div>
+    <?php endif ?>
     <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["employee_name"]); ?></b>. Welcome to ZooMS.</h1>
     <p>
         <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
-        <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
     </p>
 </body>
 </html>
