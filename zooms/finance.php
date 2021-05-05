@@ -136,8 +136,8 @@ table tr:nth-child(even){background-color: #f2f2f2;}
 <?php          
     while ($row = sqlsrv_fetch_array($hourly, SQLSRV_FETCH_ASSOC))
     {
-        $start_t = $row['clock_in'];
-        $current_t = $row['clock_out'];
+        $start_t = new DateTime($row['clock_in']);
+        $current_t = new DateTime($row['clock_out']);
         $difference = $start_t ->diff($current_t );
         $hours_t = $difference ->format('%H');
         $time_r = $difference ->format('%H:%I:%S');
