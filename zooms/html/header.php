@@ -18,13 +18,20 @@
 					<div class="collapse navbar-collapse" id="navbarText" style="display:flex; flex-direction: row; justify-content: space-between">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav">
 
-                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/zooms/zooms/view/welcome.php">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/zoo-map.php">Map</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Tickets</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Logs</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/weather.php">Weather</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/zooms/zooms/HR_admin_page.php">Human Resources</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/zooms/zooms/Veterinarian_admin_page.php">Veterinarian Services</a></li>
+						<li class="nav-item"><a class="nav-link active" aria-current="page" href="/zooms/zooms/view/welcome.php">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/zoo-map.php">Map</a></li>
+						<li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/ticket_sys2.php">Tickets</a></li>
+						<div class="dropdown">
+							<li class="nav-item"><a class="nav-link dropbtn" href="#"><i class="fas fa-caret-down"></i>Animals</a>
+							</li>
+							<div class="dropdown-content">
+								<li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/add-animals2.php">Add Animal</a><li>
+								<li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/logs2.php">Logs</a></li>
+							</div>
+						</div>
+						<li class="nav-item"><a class="nav-link" href="/zooms/zooms/view/weather.php">Weather</a></li>
+						<li class="nav-item"><a class="nav-link" href="/zooms/zooms/HR_admin_page.php">Human Resources</a></li>
+						<li class="nav-item"><a class="nav-link" href="/zooms/zooms/Veterinarian_admin_page.php">Veterinarian Services</a></li>
 
 						</ul>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">

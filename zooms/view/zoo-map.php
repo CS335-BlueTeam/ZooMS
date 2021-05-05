@@ -34,17 +34,18 @@
       var map;
       var options = {
         zoom:15,
-        center:{lat:41.3318, lng:-72.9483}
+        center:{lat:40.8506, lng:-73.8770}
       }
       map = new google.maps.Map(document.getElementById('map'), options);
-	  
+	  /*
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function (position) {
 			initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 			map.setCenter(initialLocation);
      });
- }
+ }*/
     }
+    
     </script>
     <div id="allNutritionRecords">
 
