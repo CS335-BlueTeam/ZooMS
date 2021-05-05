@@ -59,11 +59,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Prepare an update statement
         $sql = "UPDATE employees SET password = ? WHERE id = ?";
+        // Set parameters
+        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
         
-        if($result = sqlsrv_prepare($conn, $sql, array($new_password, $_SESSION['employee_id']))){
+        if($result = sqlsrv_prepare($conn, $sql, array($hashed_password, $_SESSION['employee_id']))){
             
-            // Set parameters
-            // $new_password = password_hash($new_password, PASSWORD_DEFAULT);
             
             // Attempt to execute the prepared statement
             if(sqlsrv_execute($result)){

@@ -12,6 +12,7 @@
         $salary = $_REQUEST['salary'];
         $hourlyPay = $_REQUEST['hourlyPay'];
         $password = $_REQUEST['password'];
+        $hash_password = password_hash($password, PASSWORD_DEFAULT);
 		
 		
 		$query = "SELECT MAX(ID) as lastID from employees";
@@ -24,5 +25,5 @@
         // Performing insert query execution
         // here our table name is college
         $sql_query = "INSERT INTO employees  VALUES ('$ID','$position', '$first_name', 
-            '$last_name','$startDate','$endDate','$bankAccountNumber', '$department', '$salary','$hourlyPay','$password')";
+            '$last_name','$startDate','$endDate','$bankAccountNumber', '$department', '$salary','$hourlyPay','$hash_password')";
          sqlsrv_query($conn, $sql_query);
