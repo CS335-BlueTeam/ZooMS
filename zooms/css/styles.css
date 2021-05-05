@@ -26,5 +26,16 @@
 #container #right-pane {
 	display: inherit;
 	margin: 50px 2%;
+	width: 100%;
 
+}
+
+#update {
+
+
+}
+#updateFields {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
 }
