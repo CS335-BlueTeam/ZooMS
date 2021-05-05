@@ -33,7 +33,8 @@ $sum_s = 0.0;
 
 ?>
 <h1>ZooMS Financial Managment</h1>
-
+<button id="addNewItemButton">Add Item Record </button>
+<button id="updateItemButton">Update Item Record</button>
 <label for="expenses">Zoo Item Expenses</label>
 <table name="expenses">
     <tr>
@@ -73,4 +74,59 @@ $sum_s = 0.0;
         <td><?php echo $sum_s; ?></td>
     </tr>
 
+    <form id="newItemForm" class="row g-3" action="./addNewItemRecord.php" method="post">
+					<h3>Insert Cost for New Item</h3>
+				
+					  <div class="col-md-6">
+						<label for="taskOption">Choose the item ID: </label>
+						<select name="itemID">
+							
+							<?php 
+								$query = "SELECT item_ID FROM items";
+								$itemIDs = sqlsrv_query( $conn, $query );
+								
+								while ($row = sqlsrv_fetch_array($itemIDs, SQLSRV_FETCH_ASSOC))
+								{
+									echo '<option value="'.$row['item_ID'].'">'.$row['item_ID'].'</option>';
+								}							
+							?>
+						</select><br>
+		
+						<label for="itemPrice" class="form-label">Insert Diet</label>
+						<input type="text" class="form-control" name="itemPrice" id="itemPrice">
+					  </div>
+					  <div class="col-12">
+						<button type="submit" class="btn btn-primary" id="submitNewItemRecord" name="">Submit</button>
+					  </div>
+				
+					</form>
+
+	<form id="updateItemForm" class="row g-3" action="./addNewItemRecord.php" method="post">
+					<h3>Update item</h3>
+				
+					  <div class="col-md-6">
+						<label for="taskOption">Choose the item ID: </label>
+						<select name="itemID">
+						
+							
+							<?php 
+								$query = "SELECT item_ID FROM items";
+								$itemsIDs = sqlsrv_query( $conn, $query );
+								
+								while ($row = sqlsrv_fetch_array($itemsIDs, SQLSRV_FETCH_ASSOC))
+								{
+									echo '<option value="'.$row['item_ID'].'">'.$row['item_ID'].'</option>';
+								}							
+							?>
+						</select><br>
+		
+						<label for="itemPrice" class="form-label">Insert New Item</label>
+						<input type="text" class="form-control" name="itemPrice" id="itemPrice">
+							
+					  </div>
+					  <div class="col-12">
+						<button type="submit" class="btn btn-primary" id="submitUpdateItemRecord" name="">Submit</button>
+					  </div>
+				
+					</form>
 </table>
