@@ -5,7 +5,6 @@ function get_db_connection(){
   $connectionInfo = array( "Database"=>"zooms", "UID"=>$GLOBALS['username'], "PWD"=>$GLOBALS['password'],'ReturnDatesAsStrings'=> true);
   $conn = sqlsrv_connect( $GLOBALS['servername'], $connectionInfo);
 
-
   return $conn;
 }
 ?>

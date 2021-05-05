@@ -14,7 +14,9 @@
 </head>
 <body>
 <?php
+        session_start();
 
+        if (isset($_POST['submitNewEmployeeRecord'])){
         // Taking all 5 values from the form data(input)
         $first_name =  $_REQUEST['fname'];
         $last_name = $_REQUEST['lname'];
@@ -41,7 +43,33 @@
             '$last_name','$startDate','$endDate','$bankAccountNumber', '$department', '$salary','$hourlyPay','$password')";
          sqlsrv_query($conn, $sql_query);
 
+            $_SESSION['message'] = "Employee Record Created!";
+            $_SESSION['msg_type'] = "success";
+
 		header("Location: ./HR_admin_page.php");
+        } elseif (isset($_POST['submitUpdateEmployeeRecord'])){
+            // Taking all 5 values from the form data(input)
+            $id = (int)$_REQUEST['ID'];
+            $first_name =  $_REQUEST['fname'];
+            $last_name = $_REQUEST['lname'];
+            $startDate =  $_REQUEST['startDate'];
+            $endDate = $_REQUEST['endDate'];
+            $department = $_REQUEST['department'];
+            $position = $_REQUEST['position'];
+            $salary = (float)$_REQUEST['salary'];
+            $hourlyPay = (float)$_REQUEST['hourlyPay'];
+
+            $sql_query = "update employees  set  ID='$id', position='$position', fname='$first_name', lname= '$last_name', start_date='$startDate', end_date='$endDate', dept_name='$department', salary='$salary', payperhour='$hourlyPay' where ID='$id'";
+            sqlsrv_query($conn, $sql_query);
+
+            $_SESSION['message'] = "Employee Record Updated!";
+            $_SESSION['msg_type'] = "success";
+
+
+        }
+
+        header("Location: ./HR_admin_page.php");
+        exit;
 
 ?>
 </body>
