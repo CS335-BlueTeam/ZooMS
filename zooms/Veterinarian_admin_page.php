@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is logged in, if not then redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: ./view/login.php");
     exit;
 }elseif($_SESSION["department"]!=='Veterinarian Medicine'){
     header("location: ./view/login.php");
